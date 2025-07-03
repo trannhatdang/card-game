@@ -28,12 +28,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void Shoot(int m_target)
+    public void Shoot(int target)
     {
 
     }
 
-    public void DestroyEquippable(int target, IEquippableCards card)
+    public void DestroyEquippable(int target, GameObject card)
     {
 
     }
