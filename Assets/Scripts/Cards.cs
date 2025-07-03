@@ -1,5 +1,5 @@
-interface ICards
+public abstract class Cards
 {
-	void OnUse(Player target);
-	void CheckRequirements(Player target);
+	public abstract void OnUse(Player user, Player target);
+	public abstract void CheckRequirements(Player user, Player target);
 }

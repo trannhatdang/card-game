@@ -1,11 +1,15 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] List<Player> _players;
+	[SerializeField] List<Cards> _deck;
+	[SerializeField] List<Cards> _discardPile;
     public static GameManager Instance;
+
     void Awake()
     {
 	    if(Instance != null)
@@ -16,20 +20,10 @@ public class GameManager : MonoBehaviour
 	    Instance = this;
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     public void Shoot(int target)
     {
+
+
 
     }
 
@@ -45,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     public List<int> GetRange(int target, int value)
     {
+	    List<int> ans = new List<int>();
+	    return ans;
 
     }
 
@@ -71,5 +67,42 @@ public class GameManager : MonoBehaviour
     public void Draw(List<int> targets)
     {
 
+	    foreach(Player player in _players)
+	    {
+		    if(_deck.Count <= 0) 
+		    {
+			    _deck = _discardPile.OrderBy( x => UnityEngine.Random.value).ToList();
+			    _discardPile.Clear();
+		    }
+
+		    player.AddCard(_deck[0]);
+		    _deck.RemoveAt(0);
+	    }
+    }
+
+    public void ShuffleDeck()
+    {
+	    _deck = _deck.OrderBy( x => UnityEngine.Random.value).ToList();
+    }
+
+    public void ShuffleDiscard()
+    {
+	    _discardPile = _discardPile.OrderBy( x => UnityEngine.Random.value).ToList();
+    }
+
+
+    public void Discard(Cards card)
+    {
+	    _discardPile.Add(card);
+    }
+
+    public void PlayCard(Cards card)
+    {
+
+    }
+
+    public Player GetPlayer(int target)
+    {
+	    return _players[target];
     }
 }

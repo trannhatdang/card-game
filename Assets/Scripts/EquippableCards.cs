@@ -1,4 +1,4 @@
-interface IEquippableCards : ICards
+public abstract class EquippableCards : Cards
 {
-	void OnEquip();
+	public abstract void OnEquip();
 }

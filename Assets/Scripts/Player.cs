@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] List<ICards> _cardsInHand;
-	[SerializeField] List<IEquippableCards> _cardsEquipped;
+	[SerializeField] List<Cards> _cardsInHand;
+	[SerializeField] List<EquippableCards> _cardsEquipped;
 	[SerializeField] int _hp = 4;
 	[SerializeField] int _bullets = 1;
 	[SerializeField] bool _barrel = false;
@@ -38,9 +38,15 @@ public class Player : MonoBehaviour
 
     void _playCard(int target)
     {
-	    Card card = _cardsInHand[target];
-	    cardsInHand.RemoveAt(target);
+	    Cards card = _cardsInHand[target];
+	    _cardsInHand.RemoveAt(target);
 	    GameManager.Instance.PlayCard(card);
-	    card.OnUse(this);
+	    card.OnUse(this, GameManager.Instance.GetPlayer(target));
     }
+
+    public void AddCard(Cards card)
+    {
+	    _cardsInHand.Add(card);
+    }
+
 }
