@@ -20,9 +20,8 @@ public class GameManager : MonoBehaviour
 	    Instance = this;
     }
 
-    public void Shoot(int target)
+    public void Shoot(Player target)
     {
-
 
 
     }
