@@ -1,16 +1,26 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+	[SerializeField] List<Cards> _cardsInHand;
+	[SerializeField] List<EquippableCards> _cardsEquipped;
+	[SerializeField] int _range = 0;
+	[SerializeField] int _bullets = 0;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void _playCard()
+    {
+
     }
 }

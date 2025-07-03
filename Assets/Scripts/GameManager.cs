@@ -1,19 +1,19 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //
-    //
-    public static GameManager instance;
+	[SerializeField] List<Player> _players;
+    public static GameManager Instance;
     void Awake()
     {
-	    if(instance != null)
+	    if(Instance != null)
 	    {
 		    Destroy(this.gameObject);
 	    }
 
-	    instance = this;
+	    Instance = this;
     }
 
     void Start()
