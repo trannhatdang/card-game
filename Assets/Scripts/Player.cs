@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] List<Cards> _cardsInHand;
-	[SerializeField] List<EquippableCards> _cardsEquipped;
-	[SerializeField] int _range = 0;
-	[SerializeField] int _bullets = 0;
+	[SerializeField] List<ICards> _cardsInHand;
+	[SerializeField] List<IEquippableCards> _cardsEquipped;
+	[SerializeField] int _hp = 4;
+	[SerializeField] int _bullets = 1;
+	[SerializeField] bool _barrel = false;
+	[SerializeField] bool _jail = false;
+	public bool Barrel
+	{
+		get {return _barrel;}
+		set {_barrel = value;}
+	}
+	public bool Jail
+	{
+		get{return _jail;}
+		set{_jail = value;}
+	}
+	public int HitPoints
+	{
+		get{return _hp;}
+		set{_hp = value;}
+	}
 
     void Start()
     {
@@ -19,8 +36,11 @@ public class Player : MonoBehaviour
         
     }
 
-    void _playCard()
+    void _playCard(int target)
     {
-
+	    Card card = _cardsInHand[target];
+	    cardsInHand.RemoveAt(target);
+	    GameManager.Instance.PlayCard(card);
+	    card.OnUse(this);
     }
 }

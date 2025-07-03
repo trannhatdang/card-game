@@ -1,5 +1,5 @@
-interface Cards
+interface ICards
 {
-	void OnUse();
-	void CheckRequirements();
+	void OnUse(Player target);
+	void CheckRequirements(Player target);
 }

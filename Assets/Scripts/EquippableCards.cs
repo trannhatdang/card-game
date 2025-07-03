@@ -1,4 +1,4 @@
-interface EquippableCards : Cards
+interface IEquippableCards : ICards
 {
 	void OnEquip();
 }
