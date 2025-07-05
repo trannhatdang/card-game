@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] List<Cards> _cardsInHand;
+	[SerializeField] List<GameObject> _cardsInHand;
 	[SerializeField] List<EquippableCards> _cardsEquipped;
 	[SerializeField] int _hp = 4;
 	[SerializeField] int _bullets = 1;
 	[SerializeField] bool _barrel = false;
 	[SerializeField] bool _jail = false;
+	[SerializeField] bool _isInTurn = false;
 	public bool Barrel
 	{
 		get {return _barrel;}
@@ -33,20 +34,55 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+	    if(!_isInTurn) return; 
+
+	    if(Input.GetKeyDown(KeyCode.Q))
+	    {
+		    PlayCard(1);
+	    }
+	    else if(Input.GetKeyDown(KeyCode.W))
+	    {
+		    PlayCard(2);
+	    }
+	    else if(Input.GetKeyDown(KeyCode.E))
+	    {
+		    PlayCard(3);
+	    }
+	    else if(Input.GetKeyDown(KeyCode.R))
+	    {
+		    PlayCard(4);
+	    }
+	    else if(Input.GetKeyDown(KeyCode.T))
+	    {
+		    PlayCard(5);
+	    }
+	    else if(Input.GetKeyDown(KeyCode.Space))
+	    {
+		    GameManager.Instance.NextTurn();
+	    }
     }
 
-    void _playCard(int target)
+    public void PlayCard(int target)
     {
-	    Cards card = _cardsInHand[target];
+	    GameObject card = _cardsInHand[target];
 	    _cardsInHand.RemoveAt(target);
 	    GameManager.Instance.PlayCard(card);
-	    card.OnUse(this, GameManager.Instance.GetPlayer(target));
+
+	    card.GetComponent<Cards>().OnUse(this, GameManager.Instance.GetPlayer(target));
     }
 
-    public void AddCard(Cards card)
+    public void AddCard(GameObject card)
     {
 	    _cardsInHand.Add(card);
     }
 
+    public void OutTurn()
+    {
+	    _isInTurn = false;
+    }
+
+    public void InTurn()
+    {
+	    _isInTurn = true;
+    }
 }

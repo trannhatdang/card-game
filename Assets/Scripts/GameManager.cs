@@ -6,8 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	[SerializeField] List<Player> _players;
-	[SerializeField] List<Cards> _deck;
-	[SerializeField] List<Cards> _discardPile;
+	[SerializeField] List<GameObject> _deck;
+	[SerializeField] List<GameObject> _discardPile;
+	[SerializeField] int _currentTurn = 0;
     public static GameManager Instance;
 
     void Awake()
@@ -18,6 +19,25 @@ public class GameManager : MonoBehaviour
 	    }
 
 	    Instance = this;
+    }
+
+    void Update()
+    {
+
+
+
+    }
+
+    public void NextTurn()
+    {
+	    //maybe add ui transition?
+	    _currentTurn = (_currentTurn + 1) % 4;
+	    for(int i = 0; i < 4; ++i)
+	    {
+		    _players[i].OutTurn();
+	    }
+
+	    _players[_currentTurn].InTurn();
     }
 
     public void Shoot(Player target)
@@ -89,13 +109,12 @@ public class GameManager : MonoBehaviour
 	    _discardPile = _discardPile.OrderBy( x => UnityEngine.Random.value).ToList();
     }
 
-
-    public void Discard(Cards card)
+    public void Discard(GameObject card)
     {
 	    _discardPile.Add(card);
     }
 
-    public void PlayCard(Cards card)
+    public void PlayCard(GameObject card)
     {
 
     }
