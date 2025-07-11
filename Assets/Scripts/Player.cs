@@ -12,7 +12,11 @@ public class Player : MonoBehaviour
 	[SerializeField] bool _barrel = false;
 	[SerializeField] bool _jail = false;
 	[SerializeField] bool _isInTurn = false;
-	[SerializeField] InputAction _playerControls;
+	[SerializeField] InputActionReference _playFirstCard;
+	[SerializeField] InputActionReference _playSecondCard;
+	[SerializeField] InputActionReference _playThirdCard;
+	[SerializeField] InputActionReference _playFourthCard;
+	[SerializeField] InputActionReference _playFifthCard;
 	public bool Barrel
 	{
 		get {return _barrel;}
@@ -34,41 +38,31 @@ public class Player : MonoBehaviour
         
     }
 
-	void OnEnable()
-	{
-		_playerControls.Enable();
-	}
-
-	void OnDisable()
-	{
-		_playerControls.Disable();
-	}
-
     void Update()
     {
 	    if(!_isInTurn) return; 
 
-	    if(Input.GetKeyDown(KeyCode.Q))
+	    if(UserInput.Instance.Card1IsPressed)
 	    {
 		    PlayCard(1, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.W))
+	    else if(UserInput.Instance.Card2IsPressed)
 	    {
 		    PlayCard(2, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.E))
+	    else if(UserInput.Instance.Card3IsPressed)
 	    {
 		    PlayCard(3, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.R))
+	    else if(UserInput.Instance.Card4IsPressed)
 	    {
 		    PlayCard(4, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.T))
+	    else if(UserInput.Instance.Card5IsPressed)
 	    {
 		    PlayCard(5, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.Space))
+	    else if(UserInput.Instance.NextTurnIsPressed)
 	    {
 		    GameManager.Instance.NextTurn();
 	    }
