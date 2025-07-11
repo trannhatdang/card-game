@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
 	[SerializeField] bool _barrel = false;
 	[SerializeField] bool _jail = false;
 	[SerializeField] bool _isInTurn = false;
+	[SerializeField] InputAction _playerControls;
 	public bool Barrel
 	{
 		get {return _barrel;}
@@ -31,6 +33,16 @@ public class Player : MonoBehaviour
     {
         
     }
+
+	void OnEnable()
+	{
+		_playerControls.Enable();
+	}
+
+	void OnDisable()
+	{
+		_playerControls.Disable();
+	}
 
     void Update()
     {

@@ -8,6 +8,7 @@ public class Card : MonoBehaviour
 	[SerializeField] TMP_Text _suitText;
 	[SerializeField] Image _img;
 	[SerializeField] Suit _suit;
+	[SerializeField] Image _outsideSprite;
 	void Start()
 	{
 		if(_scriptableCard)
@@ -22,9 +23,24 @@ public class Card : MonoBehaviour
 	{
 
 	}
+
 	public virtual bool CheckRequirements(Player user, Player target)
 	{
-
 		return false;
+	}
+
+	void OnMouseEnter()
+	{
+		Debug.Log("lmao");
+		Color32 col = _outsideSprite.color;
+		col.b = 0;
+		_outsideSprite.color = col;
+	}
+	void OnMouseExit()
+	{
+		Debug.Log("lmao");
+		Color32 col = _outsideSprite.color;
+		col.b = 255;
+		_outsideSprite.color = col;
 	}
 }
