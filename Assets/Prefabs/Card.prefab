@@ -201,7 +201,7 @@ MonoBehaviour:
   _name: {fileID: 0}
   _suitText: {fileID: 0}
   _img: {fileID: 0}
-  _outsideSprite: {fileID: 0}
+  _outsideSprite: {fileID: 3888428102790786902}
 --- !u!61 &8845936517471182752
 BoxCollider2D:
   m_ObjectHideFlags: 0

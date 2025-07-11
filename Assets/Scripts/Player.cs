@@ -12,11 +12,6 @@ public class Player : MonoBehaviour
 	[SerializeField] bool _barrel = false;
 	[SerializeField] bool _jail = false;
 	[SerializeField] bool _isInTurn = false;
-	[SerializeField] InputActionReference _playFirstCard;
-	[SerializeField] InputActionReference _playSecondCard;
-	[SerializeField] InputActionReference _playThirdCard;
-	[SerializeField] InputActionReference _playFourthCard;
-	[SerializeField] InputActionReference _playFifthCard;
 	public bool Barrel
 	{
 		get {return _barrel;}

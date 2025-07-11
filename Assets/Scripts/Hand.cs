@@ -6,6 +6,7 @@ public class Hand : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] List<GameObject> _cardsInHand;
+    [SerializeField] Vector3 _position;
     void Start()
     {
         
@@ -33,5 +34,9 @@ public class Hand : MonoBehaviour
    public void AddCard(GameObject Card)
    {
     _cardsInHand.Add(Card);
+   }
+   public void ResetPosition()
+   {
+    _cardsInHand[0].transform.localPosition = _position;
    }
 }

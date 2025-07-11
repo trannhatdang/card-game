@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 public class Card : MonoBehaviour
 {
 	[SerializeField] ScriptableCard _scriptableCard;
@@ -9,6 +10,7 @@ public class Card : MonoBehaviour
 	[SerializeField] Image _img;
 	[SerializeField] Suit _suit;
 	[SerializeField] Image _outsideSprite;
+	[SerializeField] Hand _currentHand;
 	void Start()
 	{
 		if(_scriptableCard)
@@ -31,16 +33,28 @@ public class Card : MonoBehaviour
 
 	void OnMouseEnter()
 	{
-		Debug.Log("lmao");
 		Color32 col = _outsideSprite.color;
 		col.b = 0;
 		_outsideSprite.color = col;
 	}
+
+	void OnMouseDrag()
+	{
+		Vector3 mos_pos = Mouse.current.position.ReadValue();
+		mos_pos = Camera.main.ScreenToWorldPoint(mos_pos);
+		mos_pos.z = 0; 
+		this.gameObject.transform.position = mos_pos; 
+	}
+
 	void OnMouseExit()
 	{
-		Debug.Log("lmao");
 		Color32 col = _outsideSprite.color;
 		col.b = 255;
 		_outsideSprite.color = col;
+	}
+	
+	void OnMouseUpAsButton()
+	{
+		_currentHand?.ResetPosition();
 	}
 }
