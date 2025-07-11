@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pew : Cards
+public class Pew : Card
 {
 	public override void OnUse(Player user, Player target)
 	{

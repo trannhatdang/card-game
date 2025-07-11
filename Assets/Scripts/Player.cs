@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] List<GameObject> _cardsInHand;
-	[SerializeField] List<EquippableCards> _cardsEquipped;
+	[SerializeField] Hand _hand;
+	[SerializeField] List<EquippableCard> _cardsEquipped;
 	[SerializeField] int _hp = 4;
 	[SerializeField] int _bullets = 1;
 	[SerializeField] bool _barrel = false;
@@ -38,23 +38,23 @@ public class Player : MonoBehaviour
 
 	    if(Input.GetKeyDown(KeyCode.Q))
 	    {
-		    PlayCard(1);
+		    PlayCard(1, 0);
 	    }
 	    else if(Input.GetKeyDown(KeyCode.W))
 	    {
-		    PlayCard(2);
+		    PlayCard(2, 0);
 	    }
 	    else if(Input.GetKeyDown(KeyCode.E))
 	    {
-		    PlayCard(3);
+		    PlayCard(3, 0);
 	    }
 	    else if(Input.GetKeyDown(KeyCode.R))
 	    {
-		    PlayCard(4);
+		    PlayCard(4, 0);
 	    }
 	    else if(Input.GetKeyDown(KeyCode.T))
 	    {
-		    PlayCard(5);
+		    PlayCard(5, 0);
 	    }
 	    else if(Input.GetKeyDown(KeyCode.Space))
 	    {
@@ -62,18 +62,18 @@ public class Player : MonoBehaviour
 	    }
     }
 
-    public void PlayCard(int target)
+    public void PlayCard(int CardToPlay, int PlayerToTarget)
     {
-	    GameObject card = _cardsInHand[target];
-	    _cardsInHand.RemoveAt(target);
+	    GameObject card = _hand.GetCard(CardToPlay);
+	    _hand.RemoveAt(CardToPlay);
 	    GameManager.Instance.PlayCard(card);
 
-	    card.GetComponent<Cards>().OnUse(this, GameManager.Instance.GetPlayer(target));
+	    card.GetComponent<Card>().OnUse(this, GameManager.Instance.GetPlayer(PlayerToTarget));
     }
 
-    public void AddCard(GameObject card)
+    public void AddCard(GameObject Card)
     {
-	    _cardsInHand.Add(card);
+	    _hand.AddCard(Card);
     }
 
     public void OutTurn()

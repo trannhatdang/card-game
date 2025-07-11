@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public void Draw(List<int> targets)
     {
-
 	    foreach(Player player in _players)
 	    {
 		    if(_deck.Count <= 0) 

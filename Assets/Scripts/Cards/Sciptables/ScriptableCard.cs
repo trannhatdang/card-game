@@ -7,5 +7,4 @@ public class ScriptableCard : ScriptableObject
 	public string Name;
 	public Image Icon;
 	public int Number;
-	public int Suit;
 }
