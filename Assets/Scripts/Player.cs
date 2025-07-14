@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -36,27 +37,27 @@ public class Player : MonoBehaviour
     {
 	    if(!_isInTurn) return; 
 
-	    if(Input.GetKeyDown(KeyCode.Q))
+	    if(UserInput.Instance.Card1IsPressed)
 	    {
 		    PlayCard(1, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.W))
+	    else if(UserInput.Instance.Card2IsPressed)
 	    {
 		    PlayCard(2, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.E))
+	    else if(UserInput.Instance.Card3IsPressed)
 	    {
 		    PlayCard(3, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.R))
+	    else if(UserInput.Instance.Card4IsPressed)
 	    {
 		    PlayCard(4, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.T))
+	    else if(UserInput.Instance.Card5IsPressed)
 	    {
 		    PlayCard(5, 0);
 	    }
-	    else if(Input.GetKeyDown(KeyCode.Space))
+	    else if(UserInput.Instance.NextTurnIsPressed)
 	    {
 		    GameManager.Instance.NextTurn();
 	    }

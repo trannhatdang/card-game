@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] List<GameObject> _deck;
 	[SerializeField] List<GameObject> _discardPile;
 	[SerializeField] int _currentTurn = 0;
+    [SerializeField] bool _selectionMode = false;
     public static GameManager Instance;
 
     void Awake()
