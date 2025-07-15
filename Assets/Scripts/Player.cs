@@ -6,32 +6,16 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
 	[SerializeField] Hand _hand;
-	[SerializeField] List<EquippableCard> _cardsEquipped;
+	[SerializeField] List<EquippableCard> _equippedCards;
+	[SerializeField] PassiveCard _passiveCard;
 	[SerializeField] int _hp = 4;
 	[SerializeField] int _bullets = 1;
-	[SerializeField] bool _barrel = false;
-	[SerializeField] bool _jail = false;
 	[SerializeField] bool _isInTurn = false;
-	public bool Barrel
-	{
-		get {return _barrel;}
-		set {_barrel = value;}
-	}
-	public bool Jail
-	{
-		get{return _jail;}
-		set{_jail = value;}
-	}
 	public int HitPoints
 	{
 		get{return _hp;}
 		set{_hp = value;}
 	}
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -85,5 +69,57 @@ public class Player : MonoBehaviour
     public void InTurn()
     {
 	    _isInTurn = true;
+    }
+
+    public void DestroyEquippable(GameObject card)
+    {
+	    int target = 0;
+
+	    for(int i = 0; i < _equippedCards.Count; ++i)
+	    {
+		    if(_equippedCards[i] == card)
+		    {
+			    target = i;
+			    break;
+		    }
+	    }
+
+	    _equippedCards.RemoveAt(target);
+    }
+
+    public bool GetBarrel()
+    {
+	    for(int i = 0; i < _equippedCards.Count; ++i)
+	    {
+		    if(_equippedCards[i].GetBarrel())
+		    {
+			    return true;
+		    }
+	    }
+	    return false;
+    }
+
+    public bool GetJail()
+    {
+	    for(int i = 0; i < _equippedCards.Count; ++i)
+	    {
+		    if(_equippedCards[i].GetJail())
+		    {
+			    return true;
+		    }
+	    }
+	    return false;
+    }
+
+    public int GetRange()
+    {
+	    for(int i = 0; i < _equippedCards.Count; ++i)
+	    {
+		    if(_equippedCards[i].GetRange() > 0)
+		    {
+			    return _equippedCards[i].GetRange();
+		    }
+	    }
+	    return 0;
     }
 }

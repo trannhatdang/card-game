@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] List<GameObject> _deck;
 	[SerializeField] List<GameObject> _discardPile;
 	[SerializeField] int _currentTurn = 0;
-    [SerializeField] bool _selectionMode = false;
+    public static bool SelectionMode {get; private set;}
     public static GameManager Instance;
 
     void Awake()
@@ -20,12 +20,17 @@ public class GameManager : MonoBehaviour
 	    }
 
 	    Instance = this;
+
+	    SelectionMode = false;
     }
 
     void Update()
     {
 
 
+    }
+    public void PlayCard(GameObject card)
+    {
 
     }
 
@@ -50,18 +55,19 @@ public class GameManager : MonoBehaviour
     public void DestroyEquippable(int target, GameObject card)
     {
 
-    }
-
-    public void AddRange(int target, int value)
-    {
 
     }
 
-    public List<int> GetRange(int target, int value)
+    public List<int> GetRange(int target)
     {
 	    List<int> ans = new List<int>();
-	    return ans;
 
+	    for(int i = 0; i < _players.Count(); ++i)
+	    {
+		    ans[i] = _players[i].GetRange();
+	    }
+
+	    return ans;
     }
 
     public void EnterDuel(int target1, int target2)
@@ -81,7 +87,10 @@ public class GameManager : MonoBehaviour
 
     public void Heal(List<int> targets)
     {
-
+	    for(int i = 0; i < targets.Count(); ++i)
+	    {
+		    _players[targets[i]].HitPoints = _players[i].HitPoints + 1;
+	    }
     }
 
     public void Draw(List<int> targets)
@@ -112,11 +121,6 @@ public class GameManager : MonoBehaviour
     public void Discard(GameObject card)
     {
 	    _discardPile.Add(card);
-    }
-
-    public void PlayCard(GameObject card)
-    {
-
     }
 
     public Player GetPlayer(int target)

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ScriptableCard : ScriptableObject
 {
 	public string Name;
-	public Image Icon;
+	public string Effect;
+	public Sprite Icon;
 	public int Number;
 }

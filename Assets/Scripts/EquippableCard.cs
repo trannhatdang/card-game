@@ -1,4 +1,6 @@
-public abstract class EquippableCard : Card
+public class EquippableCard : Card
 {
-	public abstract void OnEquip();
+	public virtual int GetRange() {return 0;}
+	public virtual bool GetBarrel() {return false;}
+	public virtual bool GetJail() {return false;}
 }

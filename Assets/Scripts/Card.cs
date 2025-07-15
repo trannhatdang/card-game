@@ -11,12 +11,17 @@ public class Card : MonoBehaviour
 	[SerializeField] Suit _suit;
 	[SerializeField] Image _outsideSprite;
 	[SerializeField] Hand _currentHand;
+	public Hand CurrentHand
+	{
+		get {return _currentHand;}
+		set {_currentHand = value;}
+	}
 	void Start()
 	{
 		if(_scriptableCard)
 		{
 			_name.text = _scriptableCard.Name;
-			_img = _scriptableCard.Icon;
+			_img.sprite = _scriptableCard.Icon;
 			_suit = new Suit(_scriptableCard.Number);
 			_suitText.text = _suit.GetSuit();
 		}
