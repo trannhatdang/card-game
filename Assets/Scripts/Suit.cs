@@ -9,12 +9,13 @@ public class Suit
 
     public String GetSuit()
     {
-        if(number < 0 || number > 53)
+        if(number <= 0 || number > 53)
         {
             return "";
         }
 
         String ans = "";
+        ans += number % 13;
         if(number / 13 == 0)
         {
             ans += "S";
@@ -32,7 +33,6 @@ public class Suit
             ans += "H";
         }
 
-        ans += number % 13;
 
         return ans;
     }

@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {
 	[SerializeField] ScriptableCard _scriptableCard;
 	[SerializeField] TMP_Text _name;
+	[SerializeField] TMP_Text _effectText;
 	[SerializeField] TMP_Text _suitText;
 	[SerializeField] Image _img;
 	[SerializeField] Suit _suit;
@@ -21,6 +22,7 @@ public class Card : MonoBehaviour
 		if(_scriptableCard)
 		{
 			_name.text = _scriptableCard.Name;
+			_effectText.text = _scriptableCard.Effect;
 			_img.sprite = _scriptableCard.Icon;
 			_suit = new Suit(_scriptableCard.Number);
 			_suitText.text = _suit.GetSuit();

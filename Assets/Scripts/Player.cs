@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 	[SerializeField] List<EquippableCard> _equippedCards;
 	[SerializeField] PassiveCard _passiveCard;
 	[SerializeField] int _hp = 4;
-	[SerializeField] int _bullets = 1;
 	[SerializeField] bool _isInTurn = false;
 	public int HitPoints
 	{

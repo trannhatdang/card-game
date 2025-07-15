@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 318f1c6116e01bdb3a0a97a169fd2e00, type: 3}
-  m_Name: CaitlynScope
+  m_Name: Gi-hun
   m_EditorClassIdentifier: 
-  Name: CaitlynScope
-  Effect: Range 4
-  Icon: {fileID: 21300000, guid: 982547b8d2072a35cb8cdec95fe8eeb9, type: 3}
-  Number: 14
+  Name: Gi-hun
+  Effect: Everytime you "Draws!" draw 2 instead of 1
+  Icon: {fileID: 21300000, guid: a710e56c6b6037847bc5796b03a5837d, type: 3}
+  Number: 0

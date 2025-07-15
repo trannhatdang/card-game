@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Card Of Sanctity
   Effect: Draw 3
   Icon: {fileID: 21300000, guid: f64dcf660c5db36b79e067056ee79ece, type: 3}
-  Number: 4
+  Number: 42

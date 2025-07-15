@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] List<Player> _players;
 	[SerializeField] List<GameObject> _deck;
 	[SerializeField] List<GameObject> _discardPile;
-	[SerializeField] int _currentTurn = 0;
+	[SerializeField] List<Hand> _hands;
+	[SerializeField] UIManager _uiManager;
+	[SerializeField] int _currentTurn = -1;
     public static bool SelectionMode {get; private set;}
     public static GameManager Instance;
 
@@ -126,5 +128,19 @@ public class GameManager : MonoBehaviour
     public Player GetPlayer(int target)
     {
 	    return _players[target];
+    }
+
+    public void StartNewGame()
+    {
+	    for(int i = 0; i < _players.Count(); ++i)
+	    {
+		    _players.RemoveAt(i);
+	    }
+	    GameObject[] list = GameObject.FindGameObjectsWithTag("Player");
+
+	    for(int i = 0; i < list.Count(); ++i)
+	    {
+		    _players.Add(list[i].GetComponent<Player>());
+	    }
     }
 }
