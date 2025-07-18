@@ -53,4 +53,13 @@ public class UserInput : MonoBehaviour
         NextTurnIsPressed = _nextTurn.IsPressed();
     }
 
+    public void DisableKeyboardInput()
+    {
+	    _playerInput.enabled = false;
+    }
+
+    public void EnableKeyboardInput()
+    {
+	    _playerInput.enabled = true;
+    }
 }

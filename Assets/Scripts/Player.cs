@@ -1,24 +1,39 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
 	[SerializeField] Hand _hand;
 	[SerializeField] List<EquippableCard> _equippedCards;
 	[SerializeField] PassiveCard _passiveCard;
 	[SerializeField] int _hp = 4;
-	[SerializeField] bool _isInTurn = false;
+	[SerializeField] int _id = -1;
+	bool _initialized = false;
+	public int ID
+	{
+		get{return _id;}
+		set
+		{
+			if(!_initialized)
+			{
+				_id = value;
+				_initialized = true;
+			}
+		}
+	}
+
 	public int HitPoints
 	{
 		get{return _hp;}
 		set{_hp = value;}
 	}
-
     void Update()
     {
-	    if(!_isInTurn) return; 
+	    if(!IsOwner) return;
+	    if(GameManager.Instance.CurrentTurn != _id) return;
 
 	    if(UserInput.Instance.Card1IsPressed)
 	    {
@@ -58,16 +73,6 @@ public class Player : MonoBehaviour
     public void AddCard(GameObject Card)
     {
 	    _hand.AddCard(Card);
-    }
-
-    public void OutTurn()
-    {
-	    _isInTurn = false;
-    }
-
-    public void InTurn()
-    {
-	    _isInTurn = true;
     }
 
     public void DestroyEquippable(GameObject card)

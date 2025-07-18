@@ -13,7 +13,9 @@ public class HandManager : MonoBehaviour
 	    {
 		    Destroy(this.gameObject);
 	    }
-	    else Instance = this;
+	    Instance = this;
+
+	    DontDestroyOnLoad(this.gameObject);
     }
 
 

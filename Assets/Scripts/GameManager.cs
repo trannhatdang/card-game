@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField] List<Hand> _hands;
 	[SerializeField] UIManager _uiManager;
 	[SerializeField] int _currentTurn = -1;
-    public static bool SelectionMode {get; private set;}
+	public int CurrentTurn
+	{
+		get {return _currentTurn;}
+		private set {;}
+	}
     public static GameManager Instance;
 
     void Awake()
@@ -23,7 +27,7 @@ public class GameManager : MonoBehaviour
 
 	    Instance = this;
 
-	    SelectionMode = false;
+	    DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
@@ -31,6 +35,8 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    //GameFunctions
     public void PlayCard(GameObject card)
     {
 
@@ -39,13 +45,8 @@ public class GameManager : MonoBehaviour
     public void NextTurn()
     {
 	    //maybe add ui transition?
+	    Debug.Log("lmao");
 	    _currentTurn = (_currentTurn + 1) % 4;
-	    for(int i = 0; i < 4; ++i)
-	    {
-		    _players[i].OutTurn();
-	    }
-
-	    _players[_currentTurn].InTurn();
     }
 
     public void Shoot(Player target)
@@ -141,6 +142,24 @@ public class GameManager : MonoBehaviour
 	    for(int i = 0; i < list.Count(); ++i)
 	    {
 		    _players.Add(list[i].GetComponent<Player>());
+		    _players[i].ID = i;
+	    }
+    }
+
+
+    //Application
+
+    public void ExitGame()
+    {
+	    Application.Quit();
+    }
+    
+    //UnityFunctions
+    void OnGUI()
+    {
+	    if(GUILayout.Button("StartNewGame"))
+	    {
+		    StartNewGame();
 	    }
     }
 }
