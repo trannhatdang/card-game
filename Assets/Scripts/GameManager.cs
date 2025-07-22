@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //GameFunctions
     public void PlayCard(GameObject card)
     {
 
@@ -44,20 +43,16 @@ public class GameManager : MonoBehaviour
 
     public void NextTurn()
     {
-	    //maybe add ui transition?
-	    Debug.Log("lmao");
 	    _currentTurn = (_currentTurn + 1) % 4;
     }
 
     public void Shoot(Player target)
     {
 
-
     }
 
     public void DestroyEquippable(int target, GameObject card)
     {
-
 
     }
 
@@ -146,9 +141,7 @@ public class GameManager : MonoBehaviour
 	    }
     }
 
-
     //Application
-
     public void ExitGame()
     {
 	    Application.Quit();
